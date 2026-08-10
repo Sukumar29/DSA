@@ -8,10 +8,10 @@ class Solution {
                 zeros++;
             }
             while(zeros>k){
-                if(nums[left]==0){
+                if(nums[left++]==0){
                     zeros--;
                 }
-                left++;
+                
             }
             max=Math.max(max,i-left+1);
         }
