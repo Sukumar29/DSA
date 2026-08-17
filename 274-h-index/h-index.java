@@ -1,5 +1,5 @@
 class Solution {
-    public int hIndex(int[] citations) {
+    public int hIndex(int[] c) {
         // Arrays.sort(citations);
         // int n=citations.length;
         // int h=0;
@@ -10,14 +10,24 @@ class Solution {
         //     }
         // }
         // return h;
-        Arrays.sort(citations);
-        int h_index = 0;
-        for (int i = citations.length - 1; i >= 0; i--) {
-            if (citations[i] > h_index)
-                h_index++;
-            else
-                break;
+        int low=0;
+        int high=c.length;
+        while(low<high){
+            int mid=(low+high+1)/2;
+            int count=0;
+            for(int i=0;i<c.length;i++) 
+            {
+                if(c[i]>=mid) {
+                    count++;
+                    }
+                }
+            if(count>=mid){
+                low=mid;
+            }
+            else{
+                high=mid-1;
+            }
         }
-        return h_index;
+        return low;
     }
 }
