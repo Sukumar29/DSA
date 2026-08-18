@@ -1,16 +1,21 @@
 class Solution {
     public int maximumValue(String[] strs) {
-        int max=0;
+        int ans=0;
         for(String s:strs){
-            int value=0;
-            if(s.matches("\\d+")){
-                value=Integer.parseInt(s);
+            boolean n=true;
+            for(char c:s.toCharArray()){
+                if(!Character.isDigit(c)){
+                    n=false;
+                    break;
+                }
+            }
+            if(n){
+                ans=Math.max(ans,Integer.parseInt(s));
             }
             else{
-                value=s.length();
+                ans=Math.max(ans,s.length());
             }
-            max=Math.max(max,value);
-        }
-        return max;
+        }   
+        return ans;
     }
 }
