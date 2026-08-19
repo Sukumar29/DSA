@@ -1,19 +1,15 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        int n=nums.length;
-        Map<Integer, Boolean> map=new HashMap<>();
-        for(int i=1;i<=n;i++){
-            map.put(i,false);
+        int n = nums.length;
+        boolean[] lookup = new boolean[n+1];
+
+        for(int num:nums){
+            if(num>0 && num<n+1)
+                lookup[num] = true;
         }
-        for(int i:nums){
-            if(i>0&&i<=n){
-                map.put(i,true);
-            }
-        }
+
         for(int i=1;i<=n;i++){
-            if(!map.get(i)){
-                return i;
-            }
+            if(!lookup[i]) return i;
         }
         return n+1;
     }
